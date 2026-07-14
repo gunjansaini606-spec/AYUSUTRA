@@ -1,0 +1,112 @@
+/* AyurSutra Advanced Production Skin Design Pattern */
+:root {
+    --ayur-green-dark: #1b4332;
+    --ayur-green-medium: #2d6a4f;
+    --ayur-green-light: #52b788;
+    --ayur-gold: #d4af37;
+    --ayur-gold-dark: #b38f00;
+    --ayur-cream: #f9f6f0;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.25);
+}
+
+body {
+    background-color: var(--ayur-cream);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Execution Framework */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(27, 67, 50, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px 0 rgba(27, 67, 50, 0.15);
+}
+
+.navbar-ayur {
+    background: var(--ayur-green-dark);
+    border-bottom: 3px solid var(--ayur-gold);
+}
+
+.navbar-ayur .navbar-brand, .navbar-ayur .nav-link {
+    color: #fff !important;
+}
+
+.navbar-ayur .nav-link:hover {
+    color: var(--ayur-gold) !important;
+}
+
+.btn-ayur-primary {
+    background-color: var(--ayur-green-medium);
+    border: 1px solid var(--ayur-green-medium);
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.btn-ayur-primary:hover {
+    background-color: var(--ayur-green-dark);
+    color: white;
+}
+
+.btn-ayur-gold {
+    background-color: var(--ayur-gold);
+    border: 1px solid var(--ayur-gold-dark);
+    color: var(--ayur-green-dark);
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+.btn-ayur-gold:hover {
+    background-color: var(--ayur-gold-dark);
+    color: white;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+}
+
+.badge-dosha {
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background-color: var(--ayur-gold);
+    color: var(--ayur-green-dark);
+    font-weight: bold;
+}
+
+.dashboard-sidebar {
+    background: white;
+    min-height: calc(100vh - 56px);
+    border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+.sidebar-link {
+    display: block;
+    padding: 12px 20px;
+    color: #495057;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.sidebar-link.active, .sidebar-link:hover {
+    background-color: var(--ayur-cream);
+    color: var(--ayur-green-dark);
+    border-left: 4px solid var(--ayur-gold);
+}

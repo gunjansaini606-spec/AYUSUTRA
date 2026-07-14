@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyurSutra – Panchakarma Management Platform</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- ChartJS and Icons CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <!-- 1. Top Core Navigation Interface -->
+    <nav class="navbar navbar-expand-lg navbar-ayur sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#" onclick="app.navigate('home')">
+                <i class="bi bi-heart-pulse-fill me-2"></i>AyurSutra
+            </a>
+            <button class="navbar-expand-toggle navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 alignment-center">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="app.navigate('home')">Home</a></li>
+                    <li class="nav-item" id="nav-login-btn"><a class="nav-link fw-bold text-warning" href="#" onclick="app.navigate('auth')">Login / Join</a></li>
+                    <li class="nav-item d-none" id="nav-dash-btn"><a class="nav-link text-white fw-bold" href="#" onclick="app.routeDashboard()">Dashboard</a></li>
+                    <li class="nav-item d-none" id="nav-logout-btn"><a class="nav-link" href="#" onclick="app.logout()">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- App Main Multiplex Containers -->
+    <main id="app-view-root">
+        
+        <!-- SECTION A: LANDING PAGE -->
+        <div id="view-home" class="view-panel">
+            <section class="hero-section text-center">
+                <div class="container py-5">
+                    <h1 class="display-3 fw-bold mb-3">Panchakarma Precision Scheduling Engine</h1>
+                    <p class="lead mb-4 mx-auto" style="max-width: 700px;">Experience AI-driven clinical Ayurvedic workflows. Synchronize treatment plans, track client recovery trajectories, and streamline clinical throughput seamlessly.</p>
+                    <div>
+                        <button class="btn btn-ayur-gold btn-lg me-3" onclick="app.navigate('auth')">Launch Digital Twin Portal</button>
+                        <button class="btn btn-outline-light btn-lg" onclick="document.getElementById('features').scrollIntoView()">Explore Clinical Modules</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="container py-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold text-success-dark">Modular Capabilities Ecosystem</h2>
+                    <p class="text-muted">Built precisely tailored for hospital groups and autonomous Panchakarma treatment environments.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="p-4 glass-card h-100">
+                            <i class="bi bi-cpu text-warning display-5 mb-3"></i>
+                            <h4>AI Tridosha Diagnostics</h4>
+                            <p class="text-muted">Analyzes clinical symptoms and physical biomarkers using a modern rule engine to predict optimal therapeutic recovery timelines.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 glass-card h-100">
+                            <i class="bi bi-calendar3 text-success display-5 mb-3"></i>
+                            <h4>Dynamic Slot Management</h4>
+                            <p class="text-muted">Eliminates resource overbooking across treatment centers by synchronizing rooms, doctors, and therapists automatically.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 glass-card h-100">
+                            <i class="bi bi-graph-up-arrow text-info display-5 mb-3"></i>
+                            <h4>Granular Biomarker Tracking</h4>
+                            <p class="text-muted">Maintains a rigorous historical audit trail for patient metrics, daily recovery scores, and physician consultation clinical notes.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION B: UNIFIED SECURE AUTH GATEWAY -->
+        <div id="view-auth" class="view-panel d-noneContainer d-none">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div class="p-5 glass-card">
+                            <ul class="nav nav-pills mb-4 justify-content-center" id="authTabs">
+                                <li class="nav-item">
+                                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#login-pane">Login Portal</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#register-pane">Registration</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Form Login Logic Container -->
+                                <div class="tab-pane fade show active" id="login-pane">
+                                    <form id="form-login" onsubmit="app.handleLogin(event)">
+                                        <div class="mb-3">
+                                            <label class="form-label">Email Address</label>
+                                            <input type="email" id="login-email" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Password Key</label>
+                                            <input type="password" id="login-password" class="form-control" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-ayur-primary w-100 py-2">Authorize Connection</button>
+                                    </form>
+                                </div>
+                                <!-- Registration Logic Container -->
+                                <div class="tab-pane fade" id="register-pane">
+                                    <form id="form-register" onsubmit="app.handleRegister(event)">
+                                        <div class="mb-3">
+                                            <label class="form-label">Full Legal Name</label>
+                                            <input type="text" id="reg-name" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Email Context</label>
+                                            <input type="email" id="reg-email" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Password Target</label>
+                                            <input type="password" id="reg-password" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Account Classification Role</label>
+                                            <select id="reg-role" class="form-select" onchange="app.toggleRegFields(this.value)">
+                                                <option value="patient">Patient Client Profile</option>
+                                                <option value="doctor">Consulting Ayurvedic Physician</option>
+                                            </select>
+                                        </div>
+                                        <div id="patient-extra-fields">
+                                            <div class="mb-3"><label class="form-label">Date of Birth</label><input type="date" id="reg-dob" class="form-control" value="1995-01-01"></div>
+                                            <div class="mb-3"><label class="form-label">Gender Mapping</label><select id="reg-gender" class="form-select"><option>Male</option><option>Female</option></select></div>
+                                            <div class="mb-3"><label class="form-label">Phone Connection</label><input type="text" id="reg-phone" class="form-control" value="9999999999"></div>
+                                        </div>
+                                        <div id="doctor-extra-fields" class="d-none">
+                                            <div class="mb-3"><label class="form-label">Specialization</label><input type="text" id="reg-spec" class="form-control" placeholder="Panchakarma Specialist"></div>
+                                            <div class="mb-3"><label class="form-label">Institutional License Number</label><input type="text" id="reg-license" class="form-control" placeholder="AYUSH-10293"></div>
+                                        </div>
+                                        <button type="submit" class="btn btn-ayur-gold w-100 py-2 mt-2">Instantiate User Account</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION C: PATIENT CONSOLIDATED MANAGEMENT CORES -->
+        <div id="view-dashboard-patient" class="view-panel d-none">
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="col-md-2 p-3 d-flex flex-column dashboard-sidebar">
+                        <h5 class="px-3 fw-bold text-success mb-4">Patient Terminal</h5>
+                        <a href="#" class="sidebar-link active" onclick="app.switchDashTab('p-home')"><i class="bi bi-house-door me-2"></i>Overview Dashboard</a>
+                        <a href="#" class="sidebar-link" onclick="app.switchDashTab('p-ai')"><i class="bi bi-robot me-2"></i>AI Dosha Expert</a>
+                        <a href="#" class="sidebar-link" onclick="app.switchDashTab('p-book')"><i class="bi bi-calendar-plus me-2">Schedule Therapy</i></a>
+                    </nav>
+                    <main class="col-md-10 p-4">
+                        <div id="p-home" class="dash-tab">
+                            <h2 class="mb-4">Welcome back, <span class="client-name-placeholder">User</span></h2>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="p-4 glass-card">
+                                        <h5>Scheduled Therapy Pipeline</h5>
+                                        <div class="table-responsive mt-3">
+                                            <table class="table align-middle"><thead class="table-light"><tr><th>Therapy</th><th>Physician</th><th>Execution Timing</th><th>Status</th></tr></thead><tbody id="patient-appts-body"></tbody></table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-4 glass-card">
+                                        <h5>Biomarkers Status Record</h5>
+                                        <div id="patient-vitals-display" class="mt-3 row g-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="p-ai" class="dash-tab d-none">
+                            <h3>AI-Powered Tridosha Assessment Engine</h3>
+                            <div class="p-4 glass-card mt-3">
+                                <form id="form-ai-query" onsubmit="app.runDiagnostics(event)">
+                                    <div class="mb-3"><label class="form-label">Describe Current Chief Physical Complaints / Symptoms</label><input type="text" id="ai-symptoms" class="form-control" placeholder="e.g., Insomnia, acid reflux, structural joint pain, chronic fatigue" required></div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-4"><label class="form-label">Resting Blood Pressure</label><input type="text" id="v-bp" class="form-control" value="120/80"></div>
+                                        <div class="col-md-4"><label class="form-label">Total Body Mass Index (BMI)</label><input type="number" step="0.1" id="v-bmi" class="form-control" value="23.4"></div>
+                                        <div class="col-md-4"><label class="form-label">Stress Metrics</label><select id="v-stress" class="form-select"><option>Low</option><option selected>Medium</option><option>High</option></select></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-ayur-primary">Execute Diagnostics Analysis Pipeline</button>
+                                </form>
+                                <div id="ai-results-render" class="mt-4 p-4 d-none border-top border-warning"></div>
+                            </div>
+                        </div>
+                        <div id="p-book" class="dash-tab d-none">
+                            <h3>Schedule Panchakarma Operations Track</h3>
+                            <div class="p-4 glass-card mt-3">
+                                <form id="form-booking" onsubmit="app.executeBooking(event)">
+                                    <div class="mb-3"><label class="form-label">Target Clinical Practitioner</label><select id="book-doc" class="form-select" required></select></div>
+                                    <div class="mb-3"><label class="form-label">Prescribed Panchakarma Therapy Mode</label><select id="book-therapy" class="form-select" required></select></div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6"><label class="form-label">Target Date</label><input type="date" id="book-date" class="form-control" required></div>
+                                        <div class="col-md-6"><label class="form-label">Target Processing Shift Slot</label><select id="book-slot" class="form-select"><option>09:00-10:00</option><option>10:00-11:00</option><option>14:00-15:00</option></select></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-ayur-gold text-white">Commit Schedule Core Registration</button>
+                                </form>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION D: DOCTOR DASHBOARD INTERFACES -->
+        <div id="view-dashboard-doctor" class="view-panel d-none">
+            <div class="container py-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Physician Clinical Control Console</h2>
+                    <span class="badge bg-success p-2">Session Active</span>
+                </div>
+                <div class="p-4 glass-card">
+                    <h5 class="mb-3">Assigned Patient Treatment Pipeline</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle"><thead class="table-dark"><tr><th>Patient Identifier</th><th>Therapy Prescribed</th><th>Scheduled Point</th><th>Notes Context</th><th>Actions Operations Pipeline</th></tr></thead><tbody id="doctor-appts-body"></tbody></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION E: ADMIN COMMAND MONITOR -->
+        <div id="view-dashboard-admin" class="view-panel d-none">
+            <div class="container py-4">
+                <h2 class="mb-4 text-dark font-weight-bold">Enterprise Command Center Dashboard</h2>
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3"><div class="p-4 glass-card text-center text-white bg-dark"><h6>Active Clients</h6><h2 id="metric-patients">0</h2></div></div>
+                    <div class="col-md-3"><div class="p-4 glass-card text-center text-white bg-success"><h6>Staff Providers</h6><h2 id="metric-doctors">0</h2></div></div>
+                    <div class="col-md-3"><div class="p-4 glass-card text-center text-white bg-warning"><h6>Total Operations Scheduled</h6><h2 id="metric-appts">0</h2></div></div>
+                    <div class="col-md-3"><div class="p-4 glass-card text-center text-white bg-danger"><h6>Audited Revenues</h6><h2 id="metric-revenue">₹0.00</h2></div></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div class="p-4 glass-card bg-white">
+                            <h5>Aggregated Operational Therapy Mix Volumes</h5>
+                            <canvas id="chartAdminDistribution" style="max-height: 400px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Global System Toast Notifications Framework -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+        <div id="sysToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMsg">Operations processed successfully.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS Injection -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
